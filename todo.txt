@@ -7,6 +7,7 @@ List of stuff I need to get done:
 -Controllers
 -Motion via differential equations
 -Animation toolkit
+-Material shaders (stripes, dots, sine waves etc)
 -Saving data
 --Strings
 --Functions

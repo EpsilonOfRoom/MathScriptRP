@@ -1,0 +1,14 @@
+List of stuff I need to get done:
+-Animation toolkit
+-print():
+--Using Computer Modern
+--Multiple Fonts
+--LaTeX integration
+-Controllers
+-Motion via differential equations
+-Saving data
+--Strings
+--Functions
+--Image data (?)
+-Get to know "coding" with math better
+-Expand weapon toolset

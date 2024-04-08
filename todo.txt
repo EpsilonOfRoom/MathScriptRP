@@ -1,11 +1,12 @@
 List of stuff I need to get done:
--Animation toolkit
+-Scene set, with scene.add(), scene.subtract() and scene.listContents() commands
 -print():
 --Using Computer Modern
 --Multiple Fonts
 --LaTeX integration
 -Controllers
 -Motion via differential equations
+-Animation toolkit
 -Saving data
 --Strings
 --Functions

@@ -1,0 +1,8 @@
+cuboid(x, y) := {z \in \mathbb{R}^3 | \forall i \in {1, 2, 3}: min(x_i, y_i) \leq z_i \leq max(x_i, y_i)}
+sphere(p, r) := {x \in \mathbb{R}^n | \sum_{i=1}^n (x_i-p_i)^2 \leq r^2}
+//WIP mov_k (A) := {p \in \mathbb{R}^3 | \exists R_k \in SO(3), d_k \in \mathbb{R}^3: (R_k p+d_k) \in A}
+line(x, y) := {z \in \mathbb{R}^3 | \exists k \in [0, 1]: kx=(1-k)y = z}
+for \phi \in \mathbb{R}^2: curvefill(\phi) := {x \in \mathbb{R}^2 | for all sequences (a_n)_{n \in \mathbb{N}} with a_0=X, \lim{n \to \infty} |a_n| = \infty: \exists k \in \mathbb{N}: line(a_k, a_{k=1}) \cap image(\phi) \neq \emptyset} //<- this one I figured out by myself, and I'm kinda proud! Shame it probably doesn't have practical uses in, say, computer graphics, unless you reword it.
+coordgrid := ({x \in \mathbb{R}^3 | (x_1 \in \mathbb{Z}; x_2, x_3 \in \mathbb{R} / \mathbb{Z}) \lor (x_2 \in \mathbb{Z}; x_1, x_3 \in \mathbb{R} / \mathbb{Z}) \lor (x_3 \in \mathbb{Z};x_1, x_2 \in \mathbb{R} / \mathbb{Z})} \cup sphere((0, 0, 0), 0.1)) \cap cuboid((-5, -5, -5), (5, 5, 5))
+//WIP nonsolid(t) := {x \in \mathbb{R}^3 | //idea: for t=0, is all of R^3; for t>0, is the limes inferior t_n->t of nonsolid(t_n). The idea is that any object that isn't set matter could not occupy the same space as set matter, and therefore, any point in a non-set matter object would not exist for a given point in time t. This way, the nonsolid set would contain every "free" point in space
+wrap(A, r) := {x \in \mathbb{R}^3 | \exists y \in A: |x-y|<r}

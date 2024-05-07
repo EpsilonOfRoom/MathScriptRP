@@ -1,0 +1,24 @@
+//*To implement:
+toDigit(s) turns a string containing only numbers into a rational number
+toString(x) truncates a real number and expresses it as a string
+*//
+
+alphabetStandard := {contains every standard character in the English alphabet; won't list here}
+alphabetComplete := {unity of every alphabet package, there's a whole bunch of special characters I won't list}
+ST := \bigcup_{i=1}^\infty alphabetComplete^i // set name stands for STring
+
+Let s \in ST be a string.
+strLength(s)=n :<=> s \in alphabetComplete^n
+
+cat(s, t) := (s_1, s_2, ..., s_k, t_1, t_2, ..., t_l) // concatenation
+cat(s_1, s_2, s_3, ..., s_n) := cat(...(cat(cat(s_1, s_2), s_3), ...), s_n)
+
+letter(s, p): ST \times \mathbb{N}_{\leq stringLength(s)} -> ST, (s, p) => s_p
+
+substring(s, p_1, p_2) := cat(letter(s, p_1), letter(s, p_1+1), ..., letter(s, p_2))
+
+
+//toDigit(s): {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, ".", "/"}^n -> \mathbb{Q}
+//gonna finish this later
+//need a findSubstring function to catch the . and the / symbol
+//also may wanna throw errors if there's more than one / or . symbol, or if . and / appear

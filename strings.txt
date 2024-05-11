@@ -1,5 +1,4 @@
 //*To implement:
-toDigit(s) turns a string containing only numbers into a rational number
 toString(x) truncates a real number and expresses it as a string
 *//
 
@@ -17,8 +16,24 @@ letter(s, p): ST \times \mathbb{N}_{\leq stringLength(s)} -> ST, (s, p) => s_p
 
 substring(s, p_1, p_2) := cat(letter(s, p_1), letter(s, p_1+1), ..., letter(s, p_2))
 
+findSubstring(s, s_{sub}): ST^2 -> \mathbb{N}^2, //finds the earliest instance of s_sub in s and returns its start- and endpoints
+{(s, s_{sub}) => (min_{i \in [1, strLength(s)]} {i \in \mathbb{N} | substring(s, i, i+strLength(s_{sub})}) = substring(s_{sub}, 1, strLength(s_{sub}))}, that same number + strLength(s_{sub})),
+if these two numbers exist and strLength(s_{sub}) \leq strLength(s)
+{(0, 0) otherwise
 
-//toDigit(s): {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, ".", "/"}^n -> \mathbb{Q}
-//gonna finish this later
-//need a findSubstring function to catch the . and the / symbol
-//also may wanna throw errors if there's more than one / or . symbol, or if . and / appear
+dividerds(s):= i \in [1, strLength(s)] | letter(s, i) = "." or "/" //divider dot slash, used only in toDigit
+primSDMap: {0, 1, 2, 3, 4, 5, 6, 7, 8, 9} \subseteq ST -> \mathbb{N}, I don't need to define this //converts string digits to numbers, might be a waste of space
+
+toDigit(s): {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, ".", "/", "-"}^n -> \mathbb{Q},
+{0 if findSubstring(findSubstring(s, "/"), "/") \neq (0, 0)
+or findSubstring(findSubstring(s, "."), ".") \neq (0, 0)
+or if \exists i \in [1, strLength(s)]: letter(s, i) = "-", letter(s, i-1) \neq "-"
+or if \exists i, j \in [1, strLength[s]: letter (s, i) = "/", letter(s, j) = "." //this throws out all undesirable cases that would produce odd results
+Otherwise, \frac{toDigit(substring(s, 1, dividerds(s)-1))}{toDigit(substring(s, dividerds(s)+1, strLength(s)))}
+if \exists i \in [1, strLength(s)]: letter(s, i) = "/"
+Otherwise, toDigit(substring(s, 1, dividerds(s)-1)) + 10^{-strLength(substring(s, dividerds(s)+1, strLength(s))}*toDigit(substring(s, dividerds(s)+1, strLength(s))
+if \exists i \ in [1, strLength(s)]: letter(s, i) = "." //this is a mouthful
+Otherwise, \sum_{i=1}^strLength{i} 10^{strLength(s)-i} primSDMap(letter(s, i)) //after all the recursion, this is what actually creates numbers
+
+//toString(x, l):
+//converts real numbers to limited strings. l says how many numbers after the comma should be preserved

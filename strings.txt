@@ -1,5 +1,6 @@
-//*To implement:
-toString(x) truncates a real number and expresses it as a string
+//*This file contains a number of functions relevant to handling strings.
+Hopefully the comments are intelligible! - Epsilon
+Available to use under the GNU General Public License 3.0.
 *//
 
 alphabetStandard := {contains every standard character in the English alphabet; won't list here}
@@ -11,6 +12,7 @@ strLength(s)=n :<=> s \in alphabetComplete^n
 
 cat(s, t) := (s_1, s_2, ..., s_k, t_1, t_2, ..., t_l) // concatenation
 cat(s_1, s_2, s_3, ..., s_n) := cat(...(cat(cat(s_1, s_2), s_3), ...), s_n)
+\cat_{i=a}^{b} s_i := cat(s_a, s_{a+1}, s_{a+2}, ..., s_{b}) // to be engraved similarly to the sum, product or integral symbol
 
 letter(s, p): ST \times \mathbb{N}_{\leq stringLength(s)} -> ST, (s, p) => s_p
 
@@ -35,5 +37,9 @@ Otherwise, toDigit(substring(s, 1, dividerds(s)-1)) + 10^{-strLength(substring(s
 if \exists i \ in [1, strLength(s)]: letter(s, i) = "." //this is a mouthful
 Otherwise, \sum_{i=1}^strLength{i} 10^{strLength(s)-i} primSDMap(letter(s, i)) //after all the recursion, this is what actually creates numbers
 
-//toString(x, l):
+digit(x, i):=\lfloor 10^{-i}x \rfloor - 10 \lfloor 10^{-i-1} //returns the i'th digit of x
+highestDigit(x):={max_{i \in \mathbb{Z}}(digit(x, i) \neq 0) if x \neq 0, //highest nonzero digit
+0 if x=0} //edge case, might mess with other stuff
+
+toString(x, l):= cat(\cat_{i=max(0, highestDigit(x))}^{0} primSDMap^{-1}(digit(x, i)), ".", \cat_{i=0}^{-l} (primSDMap^{-1}(digit(x, i)))
 //converts real numbers to limited strings. l says how many numbers after the comma should be preserved

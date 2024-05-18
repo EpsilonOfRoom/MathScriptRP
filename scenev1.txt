@@ -6,5 +6,39 @@ reality. Down the line, the framework will get upgraded so that each ModObject
 gets an input and an output tuple of whatever it needs.
 There is also currently no way to list scene contents.*//
 
-scontents:=((S_1, n_1), ..., (S_n, n_n)), where S_i \ssub \mathbb{R}^3, n \in ST
+scontents:=((S_1, n_1), ..., (S_l, n_l)), where S_i \ssub \mathbb{R}^3, n \in ST
 //contains the scene's ModObjects, to be upgraded with IO
+
+sceneCount \in \mathbb{N}
+
+scene.render:=\bigcup_{i=1}^n S_i //loads every object in scontents
+
+strGetIndex(n):={\sqrt{37707} if letter(n, strLength(n)) \neq ")"
+										or \nexists k<strLength(n)-1: letter(n, k)="("
+									toDigit(substring(n, k', strLength(n)-1)) otherwise,
+										with k'+1=max_{k<strLength-1} letter(n, k)="("}
+//gets an index of a scene object that's been added multiple times
+//the reason this is here is cause I don't see it being useful anywhere else (yet)
+//also, sqrt{37707} is an error code because it almost certainly won't appear at random, and no string produces reals
+
+scene.add(S, n) :<=>{
+		S_{n+1}=S, n_{n+1}=n
+				if n="WarningMsg" or \nexists i \leq l: n=n_i //MAKE WARNINGMSGS GO TO LOG IN V2
+		S_{n+1}=S, n_{n+1}=cat(n, "(", num, ")"), scene.add(print(cat("Added ", "n", " as ", n, "(", num, ")")), "WarningMsg")
+				with num=toString(min_{k \in \mathbb{N}/0} \nexists i \leq l: cat(n, "(", toString(k), ")") = n_i)
+				if \exists i \ leq l: n=n_i //Handles all possible duplicates at once!
+		scontents <- ((S_1, n_1), ..., (S_l, n_l), (S_{n+1}, n_{n+1}))
+		sceneCount <- sceneCount+1 //not sure if this is necessary, will keep it for later}
+		with S \ssub \mathbb{R}^3, n \in ST
+//this will get far more complex!
+
+scene.remove(n) :<=>{
+		\forall j>i: S_{j-1}<-S_j, n_{j-1}<-n_j //can and probably will have to be written more robustly in order to account for IO
+		if an i exists such that n_i=n
+		scene.add(print(cat("Object ", n, " not found!")), "WarningMsg") otherwise}
+		with n /in ST //removes objects from scene by name
+
+scene.remove(k) :<=>{
+		\forall j>k: S_{j-1}<-S_j, n_{j-1}<-n_j if k \leq sceneCount //see my comment above on this
+		scene.add(print(Index out of bounds!), "WarningMsg") otherwise}
+		with k \in \mathbb{N} //removes objects from scene by index

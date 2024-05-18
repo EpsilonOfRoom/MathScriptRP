@@ -22,12 +22,12 @@ strGetIndex(n):={\sqrt{37707} if letter(n, strLength(n)) \neq ")"
 //also, sqrt{37707} is an error code because it almost certainly won't appear at random, and no string produces reals
 
 scene.add(S, n) :<=>{
-		S_{n+1}=S, n_{n+1}=n
-				if n="WarningMsg" or \nexists i \leq l: n=n_i //MAKE WARNINGMSGS GO TO LOG IN V2
-		S_{n+1}=S, n_{n+1}=cat(n, "(", num, ")"), scene.add(print(cat("Added ", "n", " as ", n, "(", num, ")")), "WarningMsg")
-				with num=toString(min_{k \in \mathbb{N}/0} \nexists i \leq l: cat(n, "(", toString(k), ")") = n_i)
-				if \exists i \ leq l: n=n_i //Handles all possible duplicates at once!
-		scontents <- ((S_1, n_1), ..., (S_l, n_l), (S_{n+1}, n_{n+1}))
+		S_p=S, n_p=n
+				if n="WarningMsg" or \nexists i \leq sceneCount: n=n_i //MAKE WARNINGMSGS GO TO LOG IN V2
+		S_p=S, n_p=cat(n, "(", num, ")"), scene.add(print(cat("Added ", "n", " as ", n, "(", num, ")")), "WarningMsg")
+				with num=toString(min_{k \in \mathbb{N}/0} \nexists i \leq sceneCount: cat(n, "(", toString(k), ")") = n_i)
+				if \exists i \ leq sceneCount: n=n_i //Handles all possible duplicates at once!
+		scontents <- ((S_1, n_1), ..., (S_{sceneCount}, n_{sceneCount}), (S_p, n_p))
 		sceneCount <- sceneCount+1 //not sure if this is necessary, will keep it for later}
 		with S \ssub \mathbb{R}^3, n \in ST
 //this will get far more complex!

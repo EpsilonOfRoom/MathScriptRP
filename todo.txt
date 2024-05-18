@@ -1,5 +1,5 @@
 List of stuff I need to get done:
--Scene set, with scene.add(), scene.subtract() and scene.listContents() commands
+-Scene framework v2, with scene.listContents() command and IO support
 -print():
 --Using Computer Modern
 --Multiple Fonts
@@ -14,3 +14,7 @@ List of stuff I need to get done:
 --Image data (?)
 -Get to know "coding" with math better
 -Expand weapon toolset
+-Space measuring tools
+-Board games
+-CAD software
+-Dynamic geometry

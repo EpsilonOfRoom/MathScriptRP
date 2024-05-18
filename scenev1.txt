@@ -1,0 +1,10 @@
+//* This scene framework contains Mod(ular)Objects, which are pairs of sets
+in R^3 and name strings. You can add ModObjects, you can remove them by name
+(the adding function ensures no two names are identical, save for error messages),
+you can remove them by index, and you can have the whole scene rendered into
+reality. Down the line, the framework will get upgraded so that each ModObject
+gets an input and an output tuple of whatever it needs.
+There is also currently no way to list scene contents.*//
+
+scontents:=((S_1, n_1), ..., (S_n, n_n)), where S_i \ssub \mathbb{R}^3, n \in ST
+//contains the scene's ModObjects, to be upgraded with IO

@@ -3,6 +3,9 @@ Hopefully the comments are intelligible! - Epsilon
 Available to use under the GNU General Public License 3.0.
 *//
 
+//To add: handling for string lists, i.e. strings with commas separating words
+//countCommas, uniquify, some conception of how tf uniquify works
+
 alphabetStandard := {contains every standard character in the English alphabet; won't list here}
 alphabetComplete := {unity of every alphabet package, there's a whole bunch of special characters I won't list}
 ST := \bigcup_{i=1}^\infty alphabetComplete^i // set name stands for STring
